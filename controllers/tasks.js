@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 //New Will be handled by React app
 
 //Delete
-router.delete('/:id', (rea, res) => {
+router.delete('/:id', (req, res) => {
     Tasks.findByIdAndRemove(req.params.id, (err, deletedTasks) => {
         res.json(deletedTasks)
     })
@@ -27,7 +27,9 @@ router.put('/:id', (req, res) => {
 
 //Create
 router.post('/', (req, res) => {
-    res.json(createdTask)
+    Tasks.create(req.body, (err, createdTask) => {
+        res.json(createdTask)
+    })
 })
 
 //Edit will be handled by React app
