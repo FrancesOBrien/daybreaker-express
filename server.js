@@ -12,6 +12,11 @@ const app = express()
 const mongoURI = process.env.MONGODB_URI
 const PORT = process.env.PORT || 3001
 
+app.use((req, res, next) => { //routes path via Alondra
+    console.log(req.path, req.method)
+    next()
+})
+
 //Connect to Mongo
 mongoose.connect(mongoURI, { useNewUrlParser: true }, 
     () => console.log('MongoDB connection established:', mongoURI)
